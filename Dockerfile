@@ -10,7 +10,7 @@ COPY requirements.txt .
 RUN python -m pip install --upgrade pip && pip install -r requirements.txt
 
 COPY genai_scaffolding_pro ./genai_scaffolding_pro
-COPY pyproject.toml pytest.ini README.md ./.
+COPY pyproject.toml pytest.ini README.md 
 
 EXPOSE 8000
 
