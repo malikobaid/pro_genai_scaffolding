@@ -1,2 +1,4 @@
-![CI](https://github.com/obaidmalik/genai_scaffolding_pro/actions/workflows/ci.yml/badge.svg?branch=main)
-[![codecov](https://codecov.io/gh/obaidmalik/genai_scaffolding_pro/branch/main/graph/badge.svg)](https://codecov.io/gh/obaidmalik/genai_scaffolding_pro)
+# GenAI Scaffolding Pro
+
+![CI](https://github.com/obaidmalik/pro_genai_scaffolding/actions/workflows/ci.yml/badge.svg?branch=main)
+[![codecov](https://codecov.io/gh/obaidmalik/pro_genai_scaffolding/branch/main/graph/badge.svg)](https://codecov.io/gh/obaidmalik/pro_genai_scaffolding)
