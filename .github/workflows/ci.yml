@@ -9,6 +9,10 @@ on:
 jobs:
   build-test:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write  # for OIDC
+      
     strategy:
       matrix:
         python-version: [ "3.11" ]
@@ -54,10 +58,11 @@ jobs:
             --cov-fail-under=70 \
             --maxfail=1 --disable-warnings
 
-      - name: Upload coverage to Codecov
+      - name: Upload coverage to Codecov (OIDC)
         uses: codecov/codecov-action@v4
         with:
           file: ./coverage.xml
+          use_oidc: true
           fail_ci_if_error: true
 
       - name: Build Docker
