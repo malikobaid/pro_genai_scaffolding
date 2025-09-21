@@ -6,18 +6,18 @@ from fastapi import Depends, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
+from genai_scaffolding_pro.config import settings
+from genai_scaffolding_pro.graph.executor import run_graph
 
-# ---- Dependencies ----
+
 def get_tenant() -> str:
-    """Stub for tenant resolution. Extend later with real auth/tenancy."""
     return "public"
 
 
-# ---- Models ----
 class InvokeRequest(BaseModel):
     input: str = Field(..., description="User message or task")
     params: Optional[Dict[str, Any]] = Field(
-        default=None, description="Optional overrides for model/config"
+        default=None, description="Optional model/config overrides"
     )
 
 
@@ -28,11 +28,8 @@ class InvokeResponse(BaseModel):
     meta: Dict[str, Any]
 
 
-# ---- App Factory ----
 def create_app() -> FastAPI:
     app = FastAPI(title="GenAI Scaffolding Pro API", version="0.1.0")
-
-    # CORS (loose now, tighten for prod)
     app.add_middleware(
         CORSMiddleware,
         allow_origins=["*"],
@@ -49,27 +46,26 @@ def create_app() -> FastAPI:
     def invoke_agent(
         name: str, req: InvokeRequest, tenant: str = Depends(get_tenant)
     ) -> InvokeResponse:
-        """
-        Placeholder invoke. Echoes input and returns structured metadata.
-        Later replace with graph execution + verify layers.
-        """
         if not req.input.strip():
             raise HTTPException(status_code=400, detail="Empty input")
-
         run_id = f"{int(time.time())}-{uuid.uuid4().hex[:8]}"
-
+        # Merge defaults
+        params = {"model": settings.model_default, **(req.params or {})}
+        result = run_graph(req.input, params)
         draft = {
-            "message": f"Agent '{name}' received your input",
+            "message": result["message"],
             "echo": req.input,
-            "citations": [],
+            "final": result["final"],
+            "plan": result["plan"],
+            "verified": result["verified"],
+            "citations": result["citations"],
         }
-
         meta = {
             "tenant": tenant,
-            "model": req.params.get("model") if req.params else "gpt-5-mini",
+            "model": params.get("model"),
             "tokens": {"input": len(req.input), "output": 50},
+            "env": settings.env,
         }
-
         return InvokeResponse(run_id=run_id, agent=name, output=draft, meta=meta)
 
     return app

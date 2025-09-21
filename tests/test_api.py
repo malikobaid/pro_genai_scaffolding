@@ -8,7 +8,6 @@ from genai_scaffolding_pro.api.main import create_app
 
 @pytest.fixture(scope="module")
 def client() -> Generator[TestClient, None, None]:
-    """Typed TestClient fixture (yields, then closes cleanly)."""
     with TestClient(create_app()) as c:
         yield c
 

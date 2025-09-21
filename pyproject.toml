@@ -19,3 +19,12 @@ ignore_missing_imports = true
 minversion = "8.0"
 addopts = "-q --disable-warnings"
 testpaths = ["tests"]
+
+[tool.coverage.run]
+branch = true
+source = ["genai_scaffolding_pro"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+fail_under = 70
