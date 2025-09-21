@@ -1,7 +1,6 @@
 # GenAI Scaffolding Pro
 
-![CI](https://github.com/obaidmalik/pro_genai_scaffolding/actions/workflows/ci.yml/badge.svg?branch=main)
-[![codecov](https://codecov.io/gh/obaidmalik/pro_genai_scaffolding/branch/main/graph/badge.svg)](https://codecov.io/gh/obaidmalik/pro_genai_scaffolding)
+![CI](https://github.com/malikobaid/pro_genai_scaffolding/actions/workflows/ci.yml/badge.svg?branch=main)&nbsp;[![codecov](https://codecov.io/gh/malikobaid/pro_genai_scaffolding/branch/main/graph/badge.svg)](https://codecov.io/gh/malikobaid/pro_genai_scaffolding)
 
 A production-ready scaffolding project for GenAI applications.  
 This repo provides a clean, tested, and CI-integrated base for building agentic AI apps using LangGraph, FastAPI, and modern Python tooling.
