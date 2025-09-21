@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+
 from genai_scaffolding_pro.api.main import create_app
 
 app: FastAPI = create_app()

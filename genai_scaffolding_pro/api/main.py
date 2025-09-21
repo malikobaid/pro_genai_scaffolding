@@ -1,9 +1,10 @@
-from typing import Any, Dict, Optional
-from fastapi import FastAPI, HTTPException, Depends
-from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel, Field
 import time
 import uuid
+from typing import Any, Dict, Optional
+
+from fastapi import Depends, FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel, Field
 
 
 # ---- Dependencies ----

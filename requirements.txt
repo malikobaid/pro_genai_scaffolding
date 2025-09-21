@@ -37,3 +37,6 @@ black>=24.4.2
 mypy>=1.10.0
 pytest>=8.2.0
 pytest-cov>=5.0.0
+
+# CI/CD
+pre-commit>=3.7.0
